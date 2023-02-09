@@ -69,7 +69,8 @@
               "browserTarget": "greattools-app:build:production"
             },
             "development": {
-              "browserTarget": "greattools-app:build:development"
+              "browserTarget": "greattools-app:build:development",
+              "port": 4310
             }
           },
           "defaultConfiguration": "development"

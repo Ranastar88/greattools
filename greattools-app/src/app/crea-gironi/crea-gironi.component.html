@@ -1,0 +1,27 @@
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="box">
+            <mat-form-field class="example-full-width">
+                <mat-label>Numero Gironi</mat-label>
+                <input matInput placeholder="" value="1" type="number" />
+            </mat-form-field>
+            
+<mat-form-field appearance="fill">
+    <mat-label>Elenco Squadre</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Nome squadra">
+        <mat-chip-row *ngFor="let squadra of elencosquadre" (removed)="removeSquadra(squadra)">
+            {{squadra}}
+            <button matChipRemove aria-label="'rimuovi'">
+                <mat-icon>cancel</mat-icon>
+            </button>
+        </mat-chip-row>
+    </mat-chip-grid>
+    <input placeholder="Nome squadra..." [matChipInputFor]="chipGrid" (matChipInputTokenEnd)="add($event)" />
+</mat-form-field>
+        </div>
+    </div>
+    <div class="col-md-8">
+        Pippo
+    </div>
+</div>
