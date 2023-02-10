@@ -6,9 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreaGironiComponent } from './crea-gironi/crea-gironi.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatChipsModule} from '@angular/material/chips'; 
-import {MatIconModule} from '@angular/material/icon'; 
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button'; 
+import {MatDividerModule} from '@angular/material/divider'; 
 
 @NgModule({
   declarations: [
@@ -22,7 +26,12 @@ import {MatIconModule} from '@angular/material/icon';
     BrowserAnimationsModule,
     MatInputModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

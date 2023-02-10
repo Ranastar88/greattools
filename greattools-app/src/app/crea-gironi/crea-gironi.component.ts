@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Girone } from '../shared/models/girone';
 
 @Component({
   selector: 'app-crea-gironi',
@@ -7,8 +8,9 @@ import { MatChipInputEvent } from '@angular/material/chips';
   styleUrls: ['./crea-gironi.component.scss']
 })
 export class CreaGironiComponent {
-
+  numeroGironi: number = 2;
   elencosquadre:string[] = [];
+  gironi: Girone[] = [];
 
   removeSquadra(nomesquadra: string) {
     const index = this.elencosquadre.indexOf(nomesquadra);
@@ -28,4 +30,34 @@ export class CreaGironiComponent {
     // Clear the input value
     event.chipInput!.clear();
   }
+
+  async creaGironi(): Promise<void>{
+    this.gironi = [];
+    for (let i = 0; i < this.numeroGironi; i++) {
+      var g: Girone = {
+        nome: 'Girone ' + (i+1),
+        elencoSquadre: []
+      };
+      this.gironi.push(g);
+    }
+
+    var temp_s = this.elencosquadre;
+    var n_gir = 0;
+    while (temp_s.length > 0) {
+      var p = this.getRandomInt(this.elencosquadre.length);
+      temp_s[p]
+      this.gironi[n_gir].elencoSquadre.push(temp_s[p]);
+      temp_s.splice(p, 1);
+
+      n_gir ++;
+      if(n_gir >= this.numeroGironi) n_gir = 0;
+      await this.delay(1000);
+    }
+  }
+  getRandomInt(max:number): number {
+    return Math.floor(Math.random() * max);
+  }
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
 }
