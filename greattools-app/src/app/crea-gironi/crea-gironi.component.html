@@ -1,15 +1,12 @@
-<div class="container">
-    
-</div>
 <div class="row">
     <div class="col-md-4">
         <div class="box">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="w-100">
                 <mat-label>Numero Gironi</mat-label>
                 <input matInput placeholder="" [(ngModel)]="numeroGironi" type="number" />
             </mat-form-field>
 
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Elenco Squadre</mat-label>
                 <mat-chip-grid #chipGrid aria-label="Nome squadra">
                     <mat-chip-row *ngFor="let squadra of elencosquadre" (removed)="removeSquadra(squadra)">
@@ -26,22 +23,24 @@
             <button mat-flat-button color="primary" (click)="creaGironi()">Genera Gironi</button>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 p-relative">
+        <div class="box-loader" *ngIf="viewLoader">
+            <h3>Estrazione in corso...</h3>
+            <mat-spinner></mat-spinner>
+        </div>
         <div class="row around-xs">
             <div class="col-xs" *ngFor="let girone of gironi">
-                <div>
-                    <mat-card class="box">
-                        <mat-card-header>
-                            <mat-card-title>{{girone.nome}}</mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <div *ngFor="let squadra of girone.elencoSquadre">
-                                <p>{{squadra}}</p>
-                                <mat-divider></mat-divider>
-                            </div>                            
-                        </mat-card-content>
-                    </mat-card>
-                </div>                
+                <mat-card class="box">
+                    <mat-card-header>
+                        <mat-card-title>{{girone.nome}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div *ngFor="let squadra of girone.elencoSquadre">
+                            <p>{{squadra}}</p>
+                            <mat-divider></mat-divider>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
     </div>

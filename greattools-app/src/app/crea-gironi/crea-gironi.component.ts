@@ -11,6 +11,9 @@ export class CreaGironiComponent {
   numeroGironi: number = 2;
   elencosquadre:string[] = [];
   gironi: Girone[] = [];
+  viewLoader: boolean = false;
+  errorMessage: string[] = [];
+  elaborazioneInCorso: boolean = false;
 
   removeSquadra(nomesquadra: string) {
     const index = this.elencosquadre.indexOf(nomesquadra);
@@ -32,6 +35,7 @@ export class CreaGironiComponent {
   }
 
   async creaGironi(): Promise<void>{
+    this.elaborazioneInCorso = true;
     this.gironi = [];
     for (let i = 0; i < this.numeroGironi; i++) {
       var g: Girone = {
@@ -44,15 +48,19 @@ export class CreaGironiComponent {
     var temp_s = this.elencosquadre;
     var n_gir = 0;
     while (temp_s.length > 0) {
+      this.viewLoader = false;
       var p = this.getRandomInt(this.elencosquadre.length);
       temp_s[p]
       this.gironi[n_gir].elencoSquadre.push(temp_s[p]);
       temp_s.splice(p, 1);
 
+      await this.delay(1000);
+      this.viewLoader = true;
       n_gir ++;
       if(n_gir >= this.numeroGironi) n_gir = 0;
       await this.delay(1000);
     }
+    this.viewLoader = false;
   }
   getRandomInt(max:number): number {
     return Math.floor(Math.random() * max);
