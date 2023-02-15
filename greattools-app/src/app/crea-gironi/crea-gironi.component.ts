@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { zoomInDownAnimation } from 'angular-animations';
 import { Girone } from '../shared/models/girone';
 
 @Component({
   selector: 'app-crea-gironi',
   templateUrl: './crea-gironi.component.html',
-  styleUrls: ['./crea-gironi.component.scss']
+  styleUrls: ['./crea-gironi.component.scss'],
+  animations: [
+    zoomInDownAnimation()
+  ]
 })
 export class CreaGironiComponent {
   numeroGironi: number = 2;
