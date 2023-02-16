@@ -3,7 +3,7 @@
         <div class="box">
             <mat-form-field class="w-100">
                 <mat-label>Numero Gironi</mat-label>
-                <input matInput placeholder="" [(ngModel)]="numeroGironi" type="number" />
+                <input matInput placeholder="" [(ngModel)]="numeroGironi" type="number" [disabled]="elaborazioneInCorso" />
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="w-100">
@@ -17,16 +17,15 @@
                     </mat-chip-row>
                 </mat-chip-grid>
                 <input placeholder="Nome squadra..." [matChipInputFor]="chipGrid"
-                    (matChipInputTokenEnd)="add($event)" />
+                    (matChipInputTokenEnd)="add($event)" [disabled]="elaborazioneInCorso" />
             </mat-form-field>
 
-            <button mat-flat-button color="primary" (click)="creaGironi()">Genera Gironi</button>
+            <button mat-flat-button color="primary" [disabled]="elaborazioneInCorso" (click)="creaGironi()">Genera Gironi</button>
         </div>
     </div>
     <div class="col-md-8 p-relative">
         <div class="box-loader" *ngIf="viewLoader">
-            <h3>Estrazione in corso...</h3>
-            <mat-spinner></mat-spinner>
+            <img src="/assets/images/raffle.png" [@wobbleOnEnter] alt="Estrazione in corso..." width="250"/>
         </div>
         <div class="row around-xs">
             <div class="col-xs" *ngFor="let girone of gironi">
@@ -35,10 +34,11 @@
                         <mat-card-title>{{girone.nome}}</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
-                        <div *ngFor="let squadra of girone.elencoSquadre" [@zoomInDown]>
-                            <p>{{squadra}}</p>
-                            <mat-divider></mat-divider>
-                        </div>
+                        <ul class="list-alter">
+                            <li *ngFor="let squadra of girone.elencoSquadre" [@zoomInDownOnEnter]>
+                                {{squadra}}
+                            </li>
+                        </ul>
                     </mat-card-content>
                 </mat-card>
             </div>

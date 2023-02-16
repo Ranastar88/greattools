@@ -29,7 +29,18 @@ body{
 .app-title{
     font-size: 30px;
 }
-
+.list-alter{
+    list-style: none;
+    padding: 0px;
+    li{
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        background-color: #edf2f4;
+    }
+    li:nth-child(2n+1){
+        background-color: #a8dadc;
+    }
+}
 @for $i from 0 through 5 {
     .mt-#{$i} {
         margin-top: #{($i * 0.5)}rem !important;
